@@ -22,7 +22,10 @@ export class NoteManager {
   static async create(note) {
     const response = await fetch(BASE_API_URL, {
       method: "POST",
-      // headers: HEADERS_API,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": NoteManager.token
+      },
       body: JSON.stringify(note)
     });
     const data = await response.json();
@@ -32,7 +35,10 @@ export class NoteManager {
   static async remove(id) {
     const response = await fetch(BASE_API_URL + id, {
       method: "DELETE",
-      // headers: HEADERS_API
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": NoteManager.token
+      }
     });
     const data = await response.json();
     return data;
