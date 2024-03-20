@@ -45,7 +45,7 @@ export default function AddNoteForm({ onNoteAdded }) {
     // formulaire avec inputs non contrôlés (pas de onChange ni value)
     <form onSubmit={onFormSubmitHandler}>
       <fieldset>
-        <legend>Ajouter une note</legend>
+        <legend>Ajouter une note ➕</legend>
         <input name="text" type="text" />
         <input type="submit" value="Ajouter" />
       </fieldset>

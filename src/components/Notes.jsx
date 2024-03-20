@@ -10,6 +10,7 @@ import Counter from './Counter'
 import Filters from './Filters'
 import NoteList from './NoteList'
 import AddNoteForm from './AddNoteForm'
+import NoteSort from './NoteSort'
 
 function Notes() {
 
