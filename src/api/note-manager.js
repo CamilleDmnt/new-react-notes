@@ -32,6 +32,20 @@ export class NoteManager {
     return data;
   }
 
+  static async update(id, updatedNote) {
+    const response = await fetch(BASE_API_URL + id, {
+      method: "PUT", // Utilisation de la méthode PUT pour la mise à jour
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": NoteManager.token
+      },
+      body: JSON.stringify(updatedNote) // Envoyer les données mises à jour au serveur
+    });
+    const data = await response.json(); // Attendre la réponse du serveur
+    return data; // Renvoyer les données mises à jour
+  }
+
+
   static async remove(id) {
     const response = await fetch(BASE_API_URL + id, {
       method: "DELETE",

@@ -10,7 +10,7 @@ import Counter from './Counter'
 import Filters from './Filters'
 import NoteList from './NoteList'
 import AddNoteForm from './AddNoteForm'
-import NoteSort from './NoteSort'
+import EditNoteForm from './EditNoteForm'
 
 function Notes() {
 
@@ -74,12 +74,29 @@ function Notes() {
     }
   }
 
+  function onUpdateNoteHandler(id, updatedNote) {
+    NoteManager.update(id, updatedNote)
+      .then(updatedNote => {
+        const updatedNotes = notesRAW.map(note => (note.id === updatedNote.id ? updatedNote : note));
+        setNotesRAW(updatedNotes);
+        setNotes(updatedNotes);
+        alert('Note mise à jour avec succès!');
+      })
+      .catch(error => {
+        alert('Erreur lors de la mise à jour de la note.');
+        console.error(error);
+      });
+  }
+
   return (
     <>
       <Counter notes={notes} />
       <AddNoteForm onNoteAdded={onNoteAddedHandler} />
       <Filters filters={filters} onFilterChanged={onFilterChangedHandler} />
       <NoteList notes={notes} onRemoveBtn={onRemoveBtnHandler} />
+      {notes.map(note => (
+        <EditNoteForm key={note.id} note={note} onUpdate={onUpdateNoteHandler} />
+      ))}
     </>
   )
 }
